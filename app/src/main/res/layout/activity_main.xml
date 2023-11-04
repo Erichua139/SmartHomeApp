@@ -1,61 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:fitsSystemWindows="true"
+    >
 
-    <!-- Application header with title -->
-    <TextView
-        android:id="@+id/homeTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Smart Home"
-        android:textSize="24sp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:textStyle="bold" />
 
-    <!-- Navigation buttons to different sections -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_below="@id/homeTitle"
-        android:layout_marginTop="32dp"
-        android:padding="16dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <!-- Button for Devices -->
-        <Button
-            android:id="@+id/btnDevices"
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="My Devices"
-            android:layout_marginBottom="16dp"/>
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/primary"
+            android:elevation="4dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-        <!-- Button for Scenes & Routines -->
-        <Button
-            android:id="@+id/btnScenes"
+        <!-- Your main content here -->
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Scenes and Routines"
-            android:layout_marginBottom="16dp"/>
-
-        <!-- Button for Settings -->
-        <Button
-            android:id="@+id/btnSettings"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Settings"
-            android:layout_marginBottom="16dp"/>
-
-        <!-- Button for Nearby Amenities -->
-        <Button
-            android:id="@+id/btnNearby"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nearby Amenities"/>
-
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Main Content" />
     </LinearLayout>
 
-</RelativeLayout>
+    <!-- NavigationView for the sidebar menu -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/main_menu"
+        android:background="@color/light"/>
+</androidx.drawerlayout.widget.DrawerLayout>
