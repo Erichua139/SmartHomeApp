@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "986689264973",
+    "project_id": "smart-home-app-ccfca",
+    "storage_bucket": "smart-home-app-ccfca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:986689264973:android:45670bf3a3214eb3476b04",
+        "android_client_info": {
+          "package_name": "com.example.smarthomeapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0LHchqUZYhVf9wEInbUk9ZlMIstmviM0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
