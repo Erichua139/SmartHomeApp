@@ -32,6 +32,7 @@ android {
 }
 
 dependencies {
+    implementation ("androidx.cardview:cardview:1.0.0")
     implementation ("com.google.maps:google-maps-services:0.11.0")
     implementation ("com.android.volley:volley:1.2.1")
     implementation ("com.google.android.libraries.places:places:3.1.0")

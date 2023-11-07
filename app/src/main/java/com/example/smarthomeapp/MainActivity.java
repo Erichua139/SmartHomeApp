@@ -9,6 +9,8 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -48,6 +50,21 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+    public void onDeviceActionButtonClicked(View view) {
+        // This method is called when the fake button is clicked.
+        TextView statusTextView = findViewById(R.id.textview_device_status);
+
+        // Toggle device status for the sake of example
+        if (statusTextView.getText().toString().contains("Disconnected")) {
+            // Change status to 'Connected' and perform necessary operations
+            statusTextView.setText("Device Status: Connected");
+            // You can add more logic to handle the device connection here
+        } else {
+            // Change status to 'Disconnected' and perform necessary operations
+            statusTextView.setText("Device Status: Disconnected");
+            // You can add more logic to handle the device disconnection here
+        }
     }
 
     @Override
