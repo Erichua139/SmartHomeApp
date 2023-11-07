@@ -1,5 +1,6 @@
 package com.example.smarthomeapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
                 int id = item.getItemId();
 
                 if (id == R.id.nav_first) {
-                    Toast.makeText(MainActivity.this, "First item clicked", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                    startActivity(intent);
                 } else if (id == R.id.nav_second) {
                     Toast.makeText(MainActivity.this, "Second item clicked", Toast.LENGTH_SHORT).show();
                 }
