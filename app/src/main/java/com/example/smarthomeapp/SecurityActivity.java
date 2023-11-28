@@ -2,29 +2,40 @@ package com.example.smarthomeapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.navigation.NavigationView;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
+import java.util.ArrayList;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class SecurityActivity extends AppCompatActivity {
 
+    private RecyclerView recyclerView;
+    private VideoAdapter adapter;
+    private List<VideoItem> videoItemList;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_videos);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        recyclerView = findViewById(R.id.recycler_view_videos);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        videoItemList = loadVideos(); // Implement this method to load your videos
+        adapter = new VideoAdapter(this, videoItemList);
+        recyclerView.setAdapter(adapter);
 
         drawerLayout = findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(
@@ -40,13 +51,13 @@ public class MainActivity extends AppCompatActivity {
                 int id = item.getItemId();
 
                 if (id == R.id.nav_first) {
-                    Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                    Intent intent = new Intent(SecurityActivity.this, MainActivity.class);
                     startActivity(intent);
                 } else if (id == R.id.nav_second) {
-                    Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                    Intent intent = new Intent(SecurityActivity.this, MapsActivity.class);
                     startActivity(intent);
                 } else if (id == R.id.nav_third) {
-                    Intent intent = new Intent(MainActivity.this, SecurityActivity.class);
+                    Intent intent = new Intent(SecurityActivity.this, SecurityActivity.class);
                     startActivity(intent);                }
 
                 drawerLayout.closeDrawer(GravityCompat.START);
@@ -54,28 +65,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    public void onDeviceActionButtonClicked(View view) {
-        // This method is called when the fake button is clicked.
-        TextView statusTextView = findViewById(R.id.textview_device_status);
 
-        // Toggle device status for the sake of example
-        if (statusTextView.getText().toString().contains("Disconnected")) {
-            // Change status to 'Connected' and perform necessary operations
-            statusTextView.setText("Device Status: Connected");
-            // You can add more logic to handle the device connection here
-        } else {
-            // Change status to 'Disconnected' and perform necessary operations
-            statusTextView.setText("Device Status: Disconnected");
-            // You can add more logic to handle the device disconnection here
-        }
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+    private List<VideoItem> loadVideos() {
+        // Load your videos here (e.g., from a local source or a server)
+        // This is just a placeholder implementation
+        List<VideoItem> videoList = new ArrayList<>();
+        videoList.add(new VideoItem("Sample Video 1", "http://example.com/video1.mp4"));
+        videoList.add(new VideoItem("Sample Video 2", "http://example.com/video2.mp4"));
+        // Add more videos as needed
+        return videoList;
     }
 }
