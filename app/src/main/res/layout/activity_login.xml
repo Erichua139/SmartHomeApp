@@ -7,10 +7,21 @@
     android:padding="16dp"
     android:gravity="center">
 
+    <TextView
+        android:id="@+id/lighting_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Smart Home App"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="36sp"
+        android:layout_margin="8dp" />
+
     <ImageView
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:src="@drawable/home"/>
 
     <EditText
         android:id="@+id/emailEditText"
