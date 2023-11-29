@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -16,11 +17,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartHomeApp"
         tools:targetApi="31">
+        <activity
+            android:name=".SensorsActivity"
+            android:exported="false" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAR-HulOP5KGY-bNKxTLwlGkJFlNYxbVP4"/>
-        <activity android:name=".MapsActivity" />
+            android:value="AIzaSyAR-HulOP5KGY-bNKxTLwlGkJFlNYxbVP4" />
 
+        <activity android:name=".MapsActivity" />
         <activity
             android:name=".RegistrationActivity"
             android:exported="false" />
@@ -32,7 +37,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".MainActivity"
@@ -46,12 +50,10 @@
         <activity
             android:name=".SecurityActivity"
             android:exported="false" />
-        <activity android:name=".FullScreenVideoActivity"
+        <activity
+            android:name=".FullScreenVideoActivity"
             android:configChanges="orientation|screenSize"
-            android:theme="@style/Theme.AppCompat.NoActionBar.FullScreen">
-        </activity>
-
-
+            android:theme="@style/Theme.AppCompat.NoActionBar.FullScreen"></activity>
     </application>
 
 </manifest>

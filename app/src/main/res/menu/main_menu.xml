@@ -9,5 +9,8 @@
     <item
         android:id="@+id/nav_third"
         android:title="Security" />
+    <item
+        android:id="@+id/nav_fourth"
+        android:title="Sensors" />
     <!-- Add more items here as needed -->
 </menu>

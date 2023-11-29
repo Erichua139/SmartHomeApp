@@ -63,7 +63,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     startActivity(intent);
                 } else if (id == R.id.nav_third) {
                     Intent intent = new Intent(MapsActivity.this, SecurityActivity.class);
-                    startActivity(intent);                }
+                    startActivity(intent);
+                } else if (id == R.id.nav_fourth) {
+                    Intent intent = new Intent(MapsActivity.this, SensorsActivity.class);
+                    startActivity(intent);
+                }
 
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;

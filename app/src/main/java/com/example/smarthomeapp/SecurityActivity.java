@@ -70,6 +70,9 @@ public class SecurityActivity extends AppCompatActivity {
                 } else if (id == R.id.nav_third) {
                     Intent intent = new Intent(SecurityActivity.this, SecurityActivity.class);
                     startActivity(intent);
+                } else if (id == R.id.nav_fourth) {
+                    Intent intent = new Intent(SecurityActivity.this, SensorsActivity.class);
+                    startActivity(intent);
                 }
 
                 drawerLayout.closeDrawer(GravityCompat.START);

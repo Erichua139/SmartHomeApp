@@ -26,19 +26,6 @@ public class MainActivity extends AppCompatActivity{
 
     //for humidity sensor
     TextView displayHum;
-    private SensorManager mSensorManager;
-
-    SensorEventListener listener = new SensorEventListener() {
-
-        public void onSensorChanged(SensorEvent event) {
-            float humidity = event.values[0];
-            displayHum.setText(String.valueOf(humidity)+"%");
-        }
-        public void onAccuracyChanged(Sensor sensor, int accuracy){
-        }
-
-    };
-
 
 
     @Override
@@ -70,33 +57,53 @@ public class MainActivity extends AppCompatActivity{
                     startActivity(intent);
                 } else if (id == R.id.nav_third) {
                     Intent intent = new Intent(MainActivity.this, SecurityActivity.class);
-                    startActivity(intent);                }
+                    startActivity(intent);
+                } else if (id == R.id.nav_fourth) {
+                    Intent intent = new Intent(MainActivity.this, SensorsActivity.class);
+                    startActivity(intent);
+                }
 
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
         });
 
-        //Humidity Sensor
-        displayHum = (TextView)findViewById(R.id.displayHumidity);
-        displayHum.setVisibility(View.GONE);
-
-        mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        List<Sensor> mList= mSensorManager.getSensorList(Sensor.TYPE_ALL);
-
-        Sensor sensor = mSensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
-        displayHum.setVisibility(View.VISIBLE);
-        mSensorManager.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_NORMAL);
-        //check if sensor working
-        if (mSensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY) == null){
-            displayHum.setText("Sensor not Available");
-        }
-
-
     }
     public void onDeviceActionButtonClicked(View view) {
         // This method is called when the fake button is clicked.
         TextView statusTextView = findViewById(R.id.textview_device_status);
+
+        // Toggle device status for the sake of example
+        if (statusTextView.getText().toString().contains("Disconnected")) {
+            // Change status to 'Connected' and perform necessary operations
+            statusTextView.setText("Device Status: Connected");
+            // You can add more logic to handle the device connection here
+        } else {
+            // Change status to 'Disconnected' and perform necessary operations
+            statusTextView.setText("Device Status: Disconnected");
+            // You can add more logic to handle the device disconnection here
+        }
+    }
+
+    public void onDeviceActionButtonClicked2(View view) {
+        // This method is called when the fake button is clicked.
+        TextView statusTextView = findViewById(R.id.textview_device_status2);
+
+        // Toggle device status for the sake of example
+        if (statusTextView.getText().toString().contains("Disconnected")) {
+            // Change status to 'Connected' and perform necessary operations
+            statusTextView.setText("Device Status: Connected");
+            // You can add more logic to handle the device connection here
+        } else {
+            // Change status to 'Disconnected' and perform necessary operations
+            statusTextView.setText("Device Status: Disconnected");
+            // You can add more logic to handle the device disconnection here
+        }
+    }
+
+    public void onDeviceActionButtonClicked3(View view) {
+        // This method is called when the fake button is clicked.
+        TextView statusTextView = findViewById(R.id.textview_device_status3);
 
         // Toggle device status for the sake of example
         if (statusTextView.getText().toString().contains("Disconnected")) {
