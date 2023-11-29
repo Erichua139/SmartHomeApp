@@ -46,6 +46,12 @@
         <activity
             android:name=".SecurityActivity"
             android:exported="false" />
+        <activity android:name=".FullScreenVideoActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/Theme.AppCompat.NoActionBar.FullScreen">
+        </activity>
+
+
     </application>
 
 </manifest>

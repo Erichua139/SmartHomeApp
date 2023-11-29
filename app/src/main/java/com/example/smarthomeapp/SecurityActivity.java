@@ -1,6 +1,7 @@
 package com.example.smarthomeapp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -26,16 +27,26 @@ public class SecurityActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_videos);
+        // Initialize the RecyclerView
+        recyclerView = findViewById(R.id.recycler_view_videos);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
 
+        // Initialize the list of VideoItems
+        List<VideoItem> videoItems = new ArrayList<>();
+        videoItems.add(new VideoItem(R.raw.db_01_01_23));
+        // Add more video items as needed
+
+        // Initialize the adapter and set it to the RecyclerView
+        adapter = new VideoAdapter(this, videoItems);
+        recyclerView.setAdapter(adapter);
+
+
+
+        //Code for menu
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        recyclerView = findViewById(R.id.recycler_view_videos);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        videoItemList = loadVideos(); // Implement this method to load your videos
-        adapter = new VideoAdapter(this, videoItemList);
-        recyclerView.setAdapter(adapter);
 
         drawerLayout = findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(
@@ -58,22 +69,12 @@ public class SecurityActivity extends AppCompatActivity {
                     startActivity(intent);
                 } else if (id == R.id.nav_third) {
                     Intent intent = new Intent(SecurityActivity.this, SecurityActivity.class);
-                    startActivity(intent);                }
+                    startActivity(intent);
+                }
 
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
         });
-    }
-
-    private List<VideoItem> loadVideos() {
-        // Load your videos here (e.g., from a local source or a server)
-        // This is just a placeholder implementation
-        // TODO Add Database for video storage.
-        List<VideoItem> videoList = new ArrayList<>();
-        videoList.add(new VideoItem("Sample Video 1", "http://example.com/video1.mp4"));
-        videoList.add(new VideoItem("Sample Video 2", "http://example.com/video2.mp4"));
-        // Add more videos as needed
-        return videoList;
     }
 }

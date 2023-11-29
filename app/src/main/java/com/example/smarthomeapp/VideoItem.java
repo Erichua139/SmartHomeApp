@@ -1,19 +1,13 @@
 package com.example.smarthomeapp;
 
 public class VideoItem {
-    private String title;
-    private String videoUrl;
+    private final int videoResId;
 
-    public VideoItem(String title, String videoUrl) {
-        this.title = title;
-        this.videoUrl = videoUrl;
+    public VideoItem(int videoResId) {
+        this.videoResId = videoResId;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public String getVideoUrl() {
-        return videoUrl;
+    public int getVideoResId() {
+        return videoResId;
     }
 }

@@ -6,50 +6,59 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ImageView;
+import android.widget.VideoView;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
 
 public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHolder> {
 
-    private List<VideoItem> videoList;
-    private Context context;
+    private final Context context;
+    private final List<VideoItem> videoItems;
 
-    public VideoAdapter(Context context, List<VideoItem> videoList) {
+    public VideoAdapter(Context context, List<VideoItem> videoItems) {
         this.context = context;
-        this.videoList = videoList;
+        this.videoItems = videoItems;
+    }
+
+    @NonNull
+    @Override
+    public VideoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(context).inflate(R.layout.video_item, parent, false);
+        return new VideoViewHolder(itemView);
     }
 
     @Override
-    public VideoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.video_item, parent, false);
-        return new VideoViewHolder(view);
-    }
+    public void onBindViewHolder(@NonNull VideoViewHolder holder, int position) {
+        VideoItem videoItem = videoItems.get(position);
 
-    @Override
-    public void onBindViewHolder(VideoViewHolder holder, int position) {
-        VideoItem videoItem = videoList.get(position);
-        holder.videoTitle.setText(videoItem.getTitle());
+        // Set click listener for the play button
+        holder.playButton.setOnClickListener(v -> {
+            // Construct the Uri for the video resource
+            Uri videoUri = Uri.parse("android.resource://" + context.getPackageName() + "/" + videoItem.getVideoResId());
 
-        holder.itemView.setOnClickListener(v -> {
-            Uri videoUri = Uri.parse(videoItem.getVideoUrl());
-            Intent intent = new Intent(Intent.ACTION_VIEW, videoUri);
-            intent.setDataAndType(videoUri, "video/mp4");
-            context.startActivity(intent);
+            // Create an intent to launch FullScreenVideoActivity
+            Intent fullScreenIntent = new Intent(context, FullScreenVideoActivity.class);
+            fullScreenIntent.setData(videoUri);
+            context.startActivity(fullScreenIntent);
         });
     }
 
     @Override
     public int getItemCount() {
-        return videoList.size();
+        return videoItems.size();
     }
 
     public static class VideoViewHolder extends RecyclerView.ViewHolder {
-        public TextView videoTitle;
+        VideoView videoView;
+        ImageView playButton;
 
-        public VideoViewHolder(View itemView) {
+        VideoViewHolder(View itemView) {
             super(itemView);
-            videoTitle = itemView.findViewById(R.id.video_title);
+            videoView = itemView.findViewById(R.id.video_view);
+            playButton = itemView.findViewById(R.id.play_button);
         }
     }
 }
