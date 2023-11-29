@@ -11,9 +11,15 @@ import com.google.android.material.navigation.NavigationView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity{
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggle;
@@ -21,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     //for humidity sensor
     TextView displayHum;
     private SensorManager mSensorManager;
+
     SensorEventListener listener = new SensorEventListener() {
 
         public void onSensorChanged(SensorEvent event) {
@@ -31,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
     };
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
         if (mSensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY) == null){
             displayHum.setText("Sensor not Available");
         }
+
+
     }
     public void onDeviceActionButtonClicked(View view) {
         // This method is called when the fake button is clicked.
@@ -99,12 +110,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
 }

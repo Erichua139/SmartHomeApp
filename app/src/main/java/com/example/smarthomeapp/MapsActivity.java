@@ -59,8 +59,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     Intent intent = new Intent(MapsActivity.this, MainActivity.class);
                     startActivity(intent);
                 } else if (id == R.id.nav_second) {
-                    Toast.makeText(MapsActivity.this, "Second item clicked", Toast.LENGTH_SHORT).show();
-                }
+                    Intent intent = new Intent(MapsActivity.this, MapsActivity.class);
+                    startActivity(intent);
+                } else if (id == R.id.nav_third) {
+                    Intent intent = new Intent(MapsActivity.this, SecurityActivity.class);
+                    startActivity(intent);                }
 
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
