@@ -69,6 +69,7 @@ public class SecurityActivity extends AppCompatActivity {
     private List<VideoItem> loadVideos() {
         // Load your videos here (e.g., from a local source or a server)
         // This is just a placeholder implementation
+        // TODO Add Database for video storage.
         List<VideoItem> videoList = new ArrayList<>();
         videoList.add(new VideoItem("Sample Video 1", "http://example.com/video1.mp4"));
         videoList.add(new VideoItem("Sample Video 2", "http://example.com/video2.mp4"));
