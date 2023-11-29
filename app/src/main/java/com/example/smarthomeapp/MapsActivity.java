@@ -56,7 +56,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 int id = item.getItemId();
 
                 if (id == R.id.nav_first) {
-                    Intent intent = new Intent(MapsActivity.this, MapsActivity.class);
+                    Intent intent = new Intent(MapsActivity.this, MainActivity.class);
                     startActivity(intent);
                 } else if (id == R.id.nav_second) {
                     Toast.makeText(MapsActivity.this, "Second item clicked", Toast.LENGTH_SHORT).show();
