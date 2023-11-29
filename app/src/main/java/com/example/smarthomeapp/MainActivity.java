@@ -18,6 +18,20 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggle;
 
+    //for humidity sensor
+    TextView displayHum;
+    private SensorManager mSensorManager;
+    SensorEventListener listener = new SensorEventListener() {
+
+        public void onSensorChanged(SensorEvent event) {
+            float humidity = event.values[0];
+            displayHum.setText(String.valueOf(humidity)+"%");
+        }
+        public void onAccuracyChanged(Sensor sensor, int accuracy){
+        }
+
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +67,21 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        //Humidity Sensor
+        displayHum = (TextView)findViewById(R.id.displayHumidity);
+        displayHum.setVisibility(View.GONE);
+
+        mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        List<Sensor> mList= mSensorManager.getSensorList(Sensor.TYPE_ALL);
+
+        Sensor sensor = mSensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
+        displayHum.setVisibility(View.VISIBLE);
+        mSensorManager.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_NORMAL);
+        //check if sensor working
+        if (mSensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY) == null){
+            displayHum.setText("Sensor not Available");
+        }
     }
     public void onDeviceActionButtonClicked(View view) {
         // This method is called when the fake button is clicked.
