@@ -29,11 +29,13 @@ public class SensorsActivity extends AppCompatActivity {
     TextView displayHum;
     private SensorManager mSensorManager;
 
+    //access virtual sensor
     SensorEventListener listener = new SensorEventListener() {
 
+        //update sensor display when change in virtual sensor detected
         public void onSensorChanged(SensorEvent event) {
             float humidity = event.values[0];
-            displayHum.setText(String.valueOf(humidity)+"%");
+            displayHum.setText(String.valueOf(humidity)+"%"); //display in activity
         }
         public void onAccuracyChanged(Sensor sensor, int accuracy){
         }
@@ -80,16 +82,18 @@ public class SensorsActivity extends AppCompatActivity {
             }
         });
 
-        //Humidity Sensor
+        //Humidity Sensor Implementation
         displayHum = (TextView)findViewById(R.id.displayHumidity);
         displayHum.setVisibility(View.GONE);
 
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         List<Sensor> mList= mSensorManager.getSensorList(Sensor.TYPE_ALL);
 
+        //listen to sensor
         Sensor sensor = mSensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
         displayHum.setVisibility(View.VISIBLE);
         mSensorManager.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_NORMAL);
+        
         //check if sensor working
         if (mSensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY) == null){
             displayHum.setText("Sensor not Available");
